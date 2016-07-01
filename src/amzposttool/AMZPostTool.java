@@ -24,7 +24,7 @@ public class AMZPostTool {
         // TODO code application logic here
         ToolBasicFrame basicFrame= new ToolBasicFrame();
         basicFrame.setVisible(true);
-        System.out.println("Hello World!");
+        System.out.println("Hello World!!!!!!!!!!");
     
         
     }
