@@ -10,5 +10,11 @@ package dataTypes;
  * @author Kailin
  */
 public class postImage {
+    private String type;
+    private String simulationName;
+    private int n;
+    private int min;
+    private int max;
+            
     
 }
