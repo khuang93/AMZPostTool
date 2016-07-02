@@ -155,10 +155,10 @@ public class ToolBasicFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         System.out.println("Starting Analysis");
-        AnalysisFrame analysisFrame=new AnalysisFrame(baselinePath,comparePath);
-        
+        AnalysisFrame analysisFrame = new AnalysisFrame(baselinePath, comparePath);
+
         analysisFrame.setVisible(true);
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -230,16 +230,15 @@ public class ToolBasicFrame extends javax.swing.JFrame {
             path = chooser.getSelectedFile().getAbsolutePath();
 
         }
-        
-       
-         if (evt.getSource().equals(jButton_Baseline)) {
-             String[] pathSplit = path.split("\\\\");
-             String pathShown=pathSplit[pathSplit.length-1];
-            jTextField_BaselineName.setText(pathShown);
+
+        if (evt.getSource().equals(jButton_Baseline)) {
+            // String[] pathSplit = path.split("\\\\");
+            //String pathShown=pathSplit[pathSplit.length-1];
+            jTextField_BaselineName.setText(path);
         } else if (evt.getSource().equals(jButton_Compare)) {
-            String[] pathSplit = path.split("\\\\");
-             String pathShown=pathSplit[pathSplit.length-1];
-            this.jTextField_compareName.setText(pathShown);
+            //String[] pathSplit = path.split("\\\\");
+            //String pathShown=pathSplit[pathSplit.length-1];
+            this.jTextField_compareName.setText(path);
         } else {
             this.jTextField_PathPostProcessing.setText(path);
             this.jTextField_BaselineName.setText(path);
