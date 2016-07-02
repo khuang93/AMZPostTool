@@ -155,10 +155,10 @@ public class ToolBasicFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         System.out.println("Starting Analysis");
-        AnalyseFrame analySisFrame=new AnalyseFrame(baselinePath,comparePath);
-        System.out.println("Starting Analysis");
-        analySisFrame.setVisible(true);
-        System.out.println("Starting Analysis");
+        AnalysisFrame analysisFrame=new AnalysisFrame(baselinePath,comparePath);
+        
+        analysisFrame.setVisible(true);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
