@@ -9,8 +9,13 @@ package amzposttool;
  *
  * @author Kailin Huang
  */
+/*
+v0.1.0 initial release
+v0.1.1 bug fix compare and baseline changed
+
+*/
 public class AMZPostTool {
-    public String version = "v0.1.0 - initial simple release";
+    public String version = "v0.1.1";
 
     /**
      * @param args the command line arguments

@@ -5,12 +5,18 @@
  */
 package dataTypes;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FilenameFilter;
+import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -27,7 +33,8 @@ public class SimulationResult {
     private String year="";
     private int sizeAllPicFiles=0;
     ArrayList<File> allPicFiles = new ArrayList();
-    public SimulationResult(String _path){
+    ArrayList<Image> allPicImages = new ArrayList();
+    public SimulationResult(String _path) {
         path=_path;
         File dir = new File(path);
 
@@ -35,19 +42,29 @@ public class SimulationResult {
         Arrays.sort(fileList);
         for(File f:fileList){
             if(f.getAbsolutePath().endsWith("png")){
-                allPicFiles.add(f);
+                try {
+                    allPicFiles.add(f);
+                    Image im = ImageIO.read(f);
+                    allPicImages.add(im);
+                } catch (IOException ex) {
+                    Logger.getLogger(SimulationResult.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
         String[] splitted = dir.getName().split("_");
         this.year=splitted[0];
         this.type=splitted[1];
         this.name=dir.getName();
+        
         this.sizeAllPicFiles=allPicFiles.size();
         
     }
     
     public ArrayList<File> getListOfFiles(){
         return allPicFiles;
+    }
+    public ArrayList<Image> getListOfImages(){
+        return allPicImages;
     }
     public String getType(){
         return type;
