@@ -5,6 +5,8 @@
  */
 package dataTypes;
 
+import java.io.File;
+
 /**
  *
  * @author Kailin
@@ -18,9 +20,10 @@ public class postImage {
     private int max;
     private String fileName;
     private java.awt.Image image;
-    
-    
-    public postImage(){
-        
+
+    public postImage() {
+
     }
+
+
 }
