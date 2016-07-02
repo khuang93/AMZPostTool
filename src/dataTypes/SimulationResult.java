@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author Kailin Huang
  */
-public class simulationResult {
+public class SimulationResult {
     private String path;
     private String type;
     private final String HB="HB";
