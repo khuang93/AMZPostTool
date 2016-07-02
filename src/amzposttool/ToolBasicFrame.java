@@ -5,6 +5,12 @@
  */
 package amzposttool;
 
+import dataTypes.*;
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.*;
+
 /**
  *
  * @author Kailin Huang
@@ -12,8 +18,8 @@ package amzposttool;
 public class ToolBasicFrame extends javax.swing.JFrame {
 
     private String postProcessPath = "Z:\\StarCCM\\Auto 2016\\Aero\\PostProcess";
-    private String baseline = "";
-    private String compare = "";
+    private String baselinePath = "";
+    private String comparePath = "";
 
     /**
      * Creates new form ToolBasicFrame
@@ -21,15 +27,16 @@ public class ToolBasicFrame extends javax.swing.JFrame {
     public ToolBasicFrame() {
         initComponents();
         javax.swing.ImageIcon amzLogo = new javax.swing.ImageIcon(getClass().getResource("/resources/Logo AMZ rot.png"));
-
         java.awt.Image amzScaled = amzLogo.getImage().getScaledInstance(100, 29, HEIGHT);
         javax.swing.ImageIcon amzLogoScaled = new javax.swing.ImageIcon(amzScaled);
-
         this.jLabel1.setIcon(amzLogoScaled);
+        jTextField_BaselineName.setText(postProcessPath);
+        jTextField_compareName.setText(postProcessPath);
+
         this.setVisible(true);
         this.setEnabled(true);
-        
-        this.pathPostProcessing.setText(postProcessPath);
+
+        this.jTextField_PathPostProcessing.setText(postProcessPath);
     }
 
     /**
@@ -41,22 +48,47 @@ public class ToolBasicFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        baselineName = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        compareName = new javax.swing.JTextField();
+        jTextField_BaselineName = new javax.swing.JTextField();
+        jButton_Baseline = new javax.swing.JButton();
+        jButton_Compare = new javax.swing.JButton();
+        jTextField_compareName = new javax.swing.JTextField();
         setPostPathButton = new javax.swing.JButton();
-        pathPostProcessing = new javax.swing.JTextField();
+        jTextField_PathPostProcessing = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AMZ PostProcessing Analysis Tool");
 
-        jButton1.setText("Choose Baseline Simulation");
+        jButton_Baseline.setText("Choose Baseline Simulation");
+        jButton_Baseline.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_BaselineActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Choose Simulation to Compare");
+        jButton_Compare.setText("Choose Simulation to Compare");
+        jButton_Compare.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CompareActionPerformed(evt);
+            }
+        });
 
         setPostPathButton.setText("Set PostProcessing Path");
+        setPostPathButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setPostPathButtonActionPerformed(evt);
+            }
+        });
+
+        jTextField_PathPostProcessing.setText(this.postProcessPath);
+
+        jButton1.setText("Start Analysis");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,21 +97,19 @@ public class ToolBasicFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pathPostProcessing)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(setPostPathButton))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(compareName, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
-                            .addComponent(baselineName))
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jTextField_PathPostProcessing)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextField_BaselineName)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 117, Short.MAX_VALUE))
+                    .addComponent(jTextField_compareName, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(setPostPathButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton_Baseline, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton_Compare, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -87,23 +117,49 @@ public class ToolBasicFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                .addComponent(pathPostProcessing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jTextField_PathPostProcessing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(setPostPathButton)
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(baselineName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(compareName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField_BaselineName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_Baseline)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField_compareName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_Compare)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addComponent(jButton1)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void setPostPathButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setPostPathButtonActionPerformed
+        // TODO add your handling code here:
+        this.postProcessPath = this.chooseFolder(evt);
+    }//GEN-LAST:event_setPostPathButtonActionPerformed
+
+    private void jButton_BaselineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BaselineActionPerformed
+        // TODO add your handling code here:
+        this.baselinePath = this.chooseFolder(evt);
+    }//GEN-LAST:event_jButton_BaselineActionPerformed
+
+    private void jButton_CompareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CompareActionPerformed
+        // TODO add your handling code here:
+        this.comparePath = this.chooseFolder(evt);
+    }//GEN-LAST:event_jButton_CompareActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Starting Analysis");
+        AnalyseFrame analySisFrame=new AnalyseFrame(baselinePath,comparePath);
+        System.out.println("Starting Analysis");
+        analySisFrame.setVisible(true);
+        System.out.println("Starting Analysis");
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,17 +198,55 @@ public class ToolBasicFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField baselineName;
-    private javax.swing.JTextField compareName;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton_Baseline;
+    private javax.swing.JButton jButton_Compare;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField pathPostProcessing;
+    private javax.swing.JTextField jTextField_BaselineName;
+    private javax.swing.JTextField jTextField_PathPostProcessing;
+    private javax.swing.JTextField jTextField_compareName;
     private javax.swing.JButton setPostPathButton;
     // End of variables declaration//GEN-END:variables
 
-    private void chooseFolder() {
+    private String chooseFolder(java.awt.event.ActionEvent evt) {
+        String openPath = this.postProcessPath;
+        JFileChooser chooser = new JFileChooser();
+        if (evt.getSource().equals(jButton_Baseline)) {
+            openPath = jTextField_BaselineName.getText();
+            chooser.setCurrentDirectory(new File(openPath));
+        } else if (evt.getSource().equals(jButton_Compare)) {
+            openPath = jTextField_compareName.getText();
+            chooser.setCurrentDirectory(new File(openPath));
+        } else {
+            chooser.setCurrentDirectory(new File(postProcessPath));
+        }
 
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        String path = "";
+        int returnVal = chooser.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            System.out.println("You chose to open this file: "
+                    + chooser.getSelectedFile().getName());
+            path = chooser.getSelectedFile().getAbsolutePath();
+
+        }
+        
+       
+         if (evt.getSource().equals(jButton_Baseline)) {
+             String[] pathSplit = path.split("\\\\");
+             String pathShown=pathSplit[pathSplit.length-1];
+            jTextField_BaselineName.setText(pathShown);
+        } else if (evt.getSource().equals(jButton_Compare)) {
+            String[] pathSplit = path.split("\\\\");
+             String pathShown=pathSplit[pathSplit.length-1];
+            this.jTextField_compareName.setText(pathShown);
+        } else {
+            this.jTextField_PathPostProcessing.setText(path);
+            this.jTextField_BaselineName.setText(path);
+            this.jTextField_compareName.setText(path);
+        }
+
+        return path;
     }
 
 }
