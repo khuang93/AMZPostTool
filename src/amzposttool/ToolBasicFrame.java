@@ -11,13 +11,25 @@ package amzposttool;
  */
 public class ToolBasicFrame extends javax.swing.JFrame {
 
+    private String postProcessPath = "Z:\\StarCCM\\Auto 2016\\Aero\\PostProcess";
+    private String baseline = "";
+    private String compare = "";
+
     /**
      * Creates new form ToolBasicFrame
      */
     public ToolBasicFrame() {
         initComponents();
+        javax.swing.ImageIcon amzLogo = new javax.swing.ImageIcon(getClass().getResource("/resources/Logo AMZ rot.png"));
+
+        java.awt.Image amzScaled = amzLogo.getImage().getScaledInstance(100, 29, HEIGHT);
+        javax.swing.ImageIcon amzLogoScaled = new javax.swing.ImageIcon(amzScaled);
+
+        this.jLabel1.setIcon(amzLogoScaled);
         this.setVisible(true);
         this.setEnabled(true);
+        
+        this.pathPostProcessing.setText(postProcessPath);
     }
 
     /**
@@ -35,17 +47,14 @@ public class ToolBasicFrame extends javax.swing.JFrame {
         compareName = new javax.swing.JTextField();
         setPostPathButton = new javax.swing.JButton();
         pathPostProcessing = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AMZ PostProcessing Analysis Tool");
 
-        baselineName.setText("jTextField1");
-
         jButton1.setText("Choose Baseline Simulation");
 
         jButton2.setText("Choose Simulation to Compare");
-
-        compareName.setText("jTextField1");
 
         setPostPathButton.setText("Set PostProcessing Path");
 
@@ -67,13 +76,18 @@ public class ToolBasicFrame extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(pathPostProcessing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(setPostPathButton)
@@ -85,7 +99,7 @@ public class ToolBasicFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(compareName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -121,6 +135,7 @@ public class ToolBasicFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+
                 new ToolBasicFrame().setVisible(true);
             }
         });
@@ -131,7 +146,13 @@ public class ToolBasicFrame extends javax.swing.JFrame {
     private javax.swing.JTextField compareName;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField pathPostProcessing;
     private javax.swing.JButton setPostPathButton;
     // End of variables declaration//GEN-END:variables
+
+    private void chooseFolder() {
+
+    }
+
 }
