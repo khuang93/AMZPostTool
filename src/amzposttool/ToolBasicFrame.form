@@ -32,7 +32,9 @@
                   <Component id="jTextField_BaselineName" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel1" min="-2" pref="185" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="117" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabelVersion" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="194" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jTextField_compareName" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
@@ -52,7 +54,10 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" pref="54" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel1" min="-2" pref="54" max="-2" attributes="0"/>
+                  <Component id="jLabelVersion" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jTextField_PathPostProcessing" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -120,6 +125,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelVersion">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Version: "/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

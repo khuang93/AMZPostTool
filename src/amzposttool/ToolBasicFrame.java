@@ -5,6 +5,7 @@
  */
 package amzposttool;
 
+
 import dataTypes.*;
 import java.io.File;
 import javax.swing.JFileChooser;
@@ -25,7 +26,10 @@ public class ToolBasicFrame extends javax.swing.JFrame {
      * Creates new form ToolBasicFrame
      */
     public ToolBasicFrame() {
+        AMZPostTool postTool = new AMZPostTool();
         initComponents();
+        
+        jLabelVersion.setText(jLabelVersion.getText()+" "+postTool.version);
         javax.swing.ImageIcon amzLogo = new javax.swing.ImageIcon(getClass().getResource("/resources/Logo AMZ rot.png"));
         java.awt.Image amzScaled = amzLogo.getImage().getScaledInstance(100, 29, HEIGHT);
         javax.swing.ImageIcon amzLogoScaled = new javax.swing.ImageIcon(amzScaled);
@@ -56,6 +60,7 @@ public class ToolBasicFrame extends javax.swing.JFrame {
         jTextField_PathPostProcessing = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabelVersion = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AMZ PostProcessing Analysis Tool");
@@ -90,6 +95,8 @@ public class ToolBasicFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabelVersion.setText("Version: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,7 +109,9 @@ public class ToolBasicFrame extends javax.swing.JFrame {
                     .addComponent(jTextField_BaselineName)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 117, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelVersion)
+                        .addGap(0, 194, Short.MAX_VALUE))
                     .addComponent(jTextField_compareName, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -116,7 +125,9 @@ public class ToolBasicFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelVersion))
                 .addGap(18, 18, 18)
                 .addComponent(jTextField_PathPostProcessing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -202,6 +213,7 @@ public class ToolBasicFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton_Baseline;
     private javax.swing.JButton jButton_Compare;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelVersion;
     private javax.swing.JTextField jTextField_BaselineName;
     private javax.swing.JTextField jTextField_PathPostProcessing;
     private javax.swing.JTextField jTextField_compareName;

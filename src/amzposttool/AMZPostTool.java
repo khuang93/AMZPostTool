@@ -10,6 +10,7 @@ package amzposttool;
  * @author Kailin Huang
  */
 public class AMZPostTool {
+    public String version = "v0.1.0 - initial simple release";
 
     /**
      * @param args the command line arguments
@@ -22,11 +23,11 @@ public class AMZPostTool {
 
     public static void main(String[] args) {
         // TODO code application logic here
+        
         ToolBasicFrame basicFrame= new ToolBasicFrame();
         basicFrame.setVisible(true);
         System.out.println("Hello World!!!!!!!!!!");
     
-        
     }
     
 }
