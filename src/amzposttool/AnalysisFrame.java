@@ -177,7 +177,7 @@ public class AnalysisFrame extends javax.swing.JFrame {
  private ImageIcon createImageIcon(String picPath) {
 
         javax.swing.ImageIcon picIcon = new javax.swing.ImageIcon(picPath);
-        java.awt.Image picImageScaled = picIcon.getImage().getScaledInstance(900, 600, HEIGHT);
+        java.awt.Image picImageScaled = picIcon.getImage().getScaledInstance(900, 506, HEIGHT);
         javax.swing.ImageIcon picIconScaled = new javax.swing.ImageIcon(picImageScaled);
 
         return picIconScaled;
