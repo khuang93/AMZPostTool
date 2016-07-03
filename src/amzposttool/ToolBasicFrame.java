@@ -166,8 +166,10 @@ public class ToolBasicFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         System.out.println("Starting Analysis");
+        this.baselinePath=this.jTextField_BaselineName.getText();
+        this.comparePath=this.jTextField_compareName.getText();
         AnalysisFrame analysisFrame = new AnalysisFrame(baselinePath, comparePath);
-
+        
         analysisFrame.setVisible(true);
 
     }//GEN-LAST:event_jButton1ActionPerformed

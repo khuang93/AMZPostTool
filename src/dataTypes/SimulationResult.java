@@ -42,13 +42,11 @@ public class SimulationResult {
         Arrays.sort(fileList);
         for(File f:fileList){
             if(f.getAbsolutePath().endsWith("png")){
-                try {
+                
                     allPicFiles.add(f);
-                    Image im = ImageIO.read(f);
-                    allPicImages.add(im);
-                } catch (IOException ex) {
-                    Logger.getLogger(SimulationResult.class.getName()).log(Level.SEVERE, null, ex);
-                }
+//                    Image im = ImageIO.read(f.getAbsoluteFile());
+  //                  allPicImages.add(im);
+                
             }
         }
         String[] splitted = dir.getName().split("_");
